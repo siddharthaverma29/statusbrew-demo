@@ -24,8 +24,8 @@ export class AppComponent implements OnInit{
       {id: 'r2', title: 'okay', desc: 'Angular Material is okay.'},
       {id: 'r3', title: 'fine', desc: 'Angular Material is fine.'},
       {id: 'r4', title: 'bad', desc: 'Angular Material is bad.'},
-      {id: 'r4', title: 'bad', desc: 'Angular Material is awesome.'},
-      {id: 'r4', title: 'bad', desc: 'Angular Material is cool.'}
+      {id: 'r5', title: 'awesome', desc: 'Angular Material is awesome.'},
+      {id: 'r6', title: 'cool', desc: 'Angular Material is cool.'}
     ];
   }
 
