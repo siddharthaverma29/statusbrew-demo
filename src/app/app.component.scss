@@ -1,0 +1,44 @@
+.main-card{
+  width: 400px;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-field-width {
+  width: 100%;
+}
+
+.card-image{
+  background-repeat: none;
+  height: 200px;
+  width: auto;
+  text-align: center;
+}
+
+.replies__array{
+  background-color:cadetblue;
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+.replies__array > mat-card-subtitle {
+  color: white;
+  text-align: center;
+  text-transform: capitalize;
+  word-spacing: 2px;
+}
+
+.error-badge{
+  background: rgb(189, 80, 80);
+  font-size: 14px;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border-radius: 14px;
+  box-shadow: 2px 2px 1.5px black;
+}

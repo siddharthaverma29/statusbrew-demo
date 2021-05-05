@@ -1,0 +1,43 @@
+<mat-grid-list cols="1" rowHeight="700px">
+  <mat-grid-tile>
+    <mat-card class="main-card">
+      <mat-card-header class="header">
+        <mat-card-title>Angular Material</mat-card-title>
+        <mat-card-subtitle>Statusbrew Assignment</mat-card-subtitle>
+      </mat-card-header>
+      <mat-grid-list cols="1" rowHeight="250px">
+        <mat-grid-tile>
+          <img
+           mat-card-image
+           class="card-image"
+           src="https://i.pinimg.com/originals/32/9b/3e/329b3e4c3a1330480b8106ca83d1e187.png"/>
+        </mat-grid-tile>
+      </mat-grid-list>
+          <mat-card class="mat-body-1 replies__array" *ngIf="matchFound">
+            <mat-card-subtitle  *ngFor="let reply of replyArray">
+              {{reply?.desc}}
+            </mat-card-subtitle>
+          </mat-card>
+      <mat-card-content>
+        <div class="form">
+          <h4 class="error-badge" *ngIf="showError === true">{{errorMessage}}</h4>
+          <mat-form-field class="form-field-width">
+            <mat-label>Filter Name</mat-label>
+            <input
+            type="text"
+            matInput
+            placeholder="Enter a filter"
+            [(ngModel)]="searchReply"
+            (ngModelChange)="onfilterByName()">
+            <mat-hint>
+              Start with # try using #good, #bad, #okay, #fine, #awesome, #cool !
+            </mat-hint>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <!-- <button mat-button mat-stroked-button color="primary">SEARCH</button> -->
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
