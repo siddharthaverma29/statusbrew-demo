@@ -7,7 +7,7 @@ COPY package.json /app/package.json
 RUN npm install
 RUN npm install -g @angular/cli
 # RUN npm install @angular/material
-
+RUN npm install --save @angular-devkit/build-angular
 
 # add app
 COPY . /app
