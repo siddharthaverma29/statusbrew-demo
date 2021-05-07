@@ -19,3 +19,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
    - reply.interface.ts
    - dockerFile
    - dockerignore
+
+
+WHAT'S NEW
+
+1. Added highChart using npm install angular-highchart & npm install highcharts
+2. Added 2 examples inside high-charts component i.) static data ii.) rxjs dynamic data chart
+3. Modified the reply filter with rxjs Subscription.
+4. added 2 json files for dummy perposes.
