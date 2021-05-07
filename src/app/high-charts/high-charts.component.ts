@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {Chart} from 'angular-highcharts';
 import { AreaChart, BarChart, DonutChart, LineChart } from '../utilities/Chart';
 import { Options, setOptions } from "highcharts";
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-high-charts',
   templateUrl: './high-charts.component.html',
   styleUrls: ['./high-charts.component.scss']
 })
-export class HighChartsComponent implements OnInit {
+export class HighChartsComponent implements OnInit, OnDestroy {
   donutChart = new Chart(DonutChart);
   lineChart = new Chart(LineChart);
   areaChart = new Chart(AreaChart);
   barChart = new Chart(BarChart);
   rxjsChartEg = null;
+  chartSubs: Subscription;
   constructor(private http: HttpClient){}
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class HighChartsComponent implements OnInit {
   private dataFetcher(): void {
     let idArray: Array<{name: string, y: number, color: string}> = [];
 
-    this.rxjsDataObserver.subscribe( (data) => {
+    this.chartSubs = this.rxjsDataObserver.subscribe( (data) => {
       for(let d of data) {
         idArray.push({name: d.email, y: +d.id, color: d.color});
       }
@@ -84,4 +86,7 @@ export class HighChartsComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.chartSubs.unsubscribe();
+  }
 }
