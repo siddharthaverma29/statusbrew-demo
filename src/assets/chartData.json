@@ -1,0 +1,11 @@
+[
+  {"postId": 1, "id": 1, "email": "a@gmail.com", "color": "red"},
+  {"postId": 1, "id": 2, "email": "b@gmail.com", "color": "yellow"},
+  {"postId": 1, "id": 3, "email": "c@gmail.com", "color": "orange"},
+  {"postId": 1, "id": 4, "email": "d@gmail.com", "color": "blue"},
+  {"postId": 2, "id": 1, "email": "a@gmail.com", "color": "red"},
+  {"postId": 2, "id": 2, "email": "b@gmail.com", "color": "yellow"},
+  {"postId": 2, "id": 3, "email": "c@gmail.com", "color": "orange"},
+  {"postId": 2, "id": 4, "email": "d@gmail.com", "color": "blue"},
+  {"postId": 3, "id": 6, "email": "z@gmail.com", "color": "purple"}
+]

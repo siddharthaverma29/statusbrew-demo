@@ -1,8 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
 body{
-  margin: 0;
-  background: rgb(34,184,195);
-  background: linear-gradient(274deg, rgba(34,184,195,1) 0%, rgba(212,45,253,1) 100%);
+  margin: 50px!important;
 }
 
-
+html {
+  background-repeat: no-repeat;
+  background: rgb(150,145,201);
+  background: linear-gradient(180deg, rgba(150,145,201,1) 0%, rgba(104,133,171,1) 1%, rgba(40,52,85,1) 100%);
+}

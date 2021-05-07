@@ -1,5 +1,8 @@
-import { OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { OnDestroy, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { map, take, tap } from 'rxjs/operators';
 import { RepliesModal } from './replies.modal';
 
 @Component({
@@ -7,26 +10,19 @@ import { RepliesModal } from './replies.modal';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  //@ViewChild('requestedName') requestedName: ElementRef;
+export class AppComponent implements OnInit, OnDestroy{
   searchReply: string = '';
   replyArray: RepliesModal[];
   errorMessage: string;
   showError: boolean = false;
   matchFound: boolean = false;
-  ngOnInit() {
-      this.initializeReplies();
+  repliesSubs: Subscription;
+  constructor(private http: HttpClient) {
+
   }
 
-   private initializeReplies()  {
-    this.replyArray = [
-      {id: 'r1', title: 'good', desc: 'Angular Material is good.'},
-      {id: 'r2', title: 'okay', desc: 'Angular Material is okay.'},
-      {id: 'r3', title: 'fine', desc: 'Angular Material is fine.'},
-      {id: 'r4', title: 'bad', desc: 'Angular Material is bad.'},
-      {id: 'r5', title: 'awesome', desc: 'Angular Material is awesome.'},
-      {id: 'r6', title: 'cool', desc: 'Angular Material is cool.'}
-    ];
+  ngOnInit() {
+      this.initializeReplies();
   }
 
   onfilterByName() {
@@ -36,12 +32,13 @@ export class AppComponent implements OnInit{
     } else if(this.searchReply.startsWith('#')) {
         this.showError = false;
         this.matchFound = true;
-        this.initializeReplies();
+        // this.initializeReplies();
     }
     let modifiedReplyArray: RepliesModal[] = [];
     this.replyArray.filter( (reply) => {
         if(this.searchReply.startsWith('#')) {
           const searchString = this.searchReply.replace('#', '');
+
           if(reply.title.toLowerCase().includes(searchString.toLowerCase())) {
             this.matchFound = true;
             modifiedReplyArray.push(new RepliesModal(reply.id, reply.title, reply.desc));
@@ -55,4 +52,26 @@ export class AppComponent implements OnInit{
     return this.replyArray = modifiedReplyArray;
   }
 
+  private get repliesObserver(): Observable<RepliesModal[]> {
+    return this.http.get<[RepliesModal]>('../../assets/filterData.json')
+    .pipe( map( (data) => {
+      let modifiedDataArray: RepliesModal[] = [];
+        for(let d of data) {
+            d.title !== null ? modifiedDataArray.push(d) : null;
+        }
+        return modifiedDataArray;
+    }), take(1), tap( (data) => {console.log(data)}))
+  }
+
+  private initializeReplies()  {
+    this.repliesSubs = this.repliesObserver.subscribe( replies => {
+      this.replyArray = replies;
+    })
+  }
+
+  ngOnDestroy() {
+    this.repliesSubs.unsubscribe();
+  }
 }
+
+
